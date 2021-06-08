@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.Connecting"
+             Title="Connecting"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#f5f5f5">
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior
+        Command="{Binding GoBackCommand}"
+        IsEnabled="True"
+        TextOverride="Back" />
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <StackLayout 
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand">
+
+                <ffimg:SvgCachedImage HorizontalOptions="Center"
+                                      VerticalOptions="CenterAndExpand"
+                                      HeightRequest="256"
+                                      WidthRequest="256"
+                                      ffimg:Aspect="AspectFit"
+                                      Source="resource://IncliForms.Resources.bluetooth.svg"/>
+
+                <Label x:Name="lblConnecting"
+                       HorizontalOptions="Center"
+                       Text="Connecting..."
+                       Style="{StaticResource notHeader}"/>
+
+                <Label Style="{StaticResource notText}"
+                       HorizontalOptions="Center"
+                       Text="Connecting to"/>
+
+                <Label Style="{StaticResource notText}"
+                       WidthRequest="324"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       Text="Site A End Of Crest"/>
+
+                <StackLayout Margin="0,20,0,0">
+                    <Button Style="{StaticResource btnSecondary}"
+                       WidthRequest="324"
+                        Text="Cancel"
+                            x:Name="btnCancel"
+                            Clicked="btnCancel_Clicked"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

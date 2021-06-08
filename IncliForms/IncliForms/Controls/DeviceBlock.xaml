@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             x:Class="IncliForms.Controls.DeviceBlock"
+             HeightRequest="232"
+             WidthRequest="190">
+    <ContentView.Content>
+        <Frame HasShadow="True" Padding="0">
+            <AbsoluteLayout>
+                <StackLayout Orientation="Vertical" 
+                             x:Name="stackMain"
+                             Padding="12"
+                             xe:Commands.Tap="{Binding cmdClick}"
+                             xe:TouchEffect.Color="#aaa"
+                             AbsoluteLayout.LayoutFlags="SizeProportional"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <ffimg:SvgCachedImage 
+                           Source="resource://IncliForms.Resources.icon_inclinometer.svg"
+                           ffimg:Aspect="AspectFit"
+                           HorizontalOptions="Center"
+                           VerticalOptions="FillAndExpand"/>
+
+                    <Label Text="Site A End of Crest"
+                           x:Name="lblTitle"
+                       FontSize="Subtitle"
+                       TextColor="#000"
+                       />
+                    <Label Text="ADR Inclinometer Model AD-600"
+                           x:Name="lblModel"
+                       TextColor="#999"
+                       FontSize="13"/>
+                    <Label Text="v1.2"
+                           x:Name="lblVersion"
+                       TextColor="#999"
+                       FontSize="11"/>
+
+                </StackLayout>
+
+                <Frame CornerRadius="21"
+                       Padding="8"
+                       AbsoluteLayout.LayoutFlags="None"
+                       AbsoluteLayout.LayoutBounds="12,12,42,42"
+                       BackgroundColor="Orange"
+                       x:Name="btnSettings">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="btnSettings_Tapped"/>
+                    </Frame.GestureRecognizers>
+
+                    <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          Source="resource://IncliForms.Resources.settings.svg"/>
+                </Frame>
+            </AbsoluteLayout>
+        </Frame>
+
+    </ContentView.Content>
+</ContentView>

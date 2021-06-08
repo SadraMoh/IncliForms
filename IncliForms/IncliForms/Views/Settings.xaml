@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.Settings">
+
+    <ContentPage.Content>
+        <TableView Intent="Settings"
+                   RowHeight="72">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell Tapped="ViewCell_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Workplace Name
+                            </Label>
+                            <Label x:Name="lblWorkplaceName" Style="{StaticResource cellValue}">
+                                Karkheh
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="ViewCell_Tapped_1">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Operator Name
+                            </Label>
+                            <Label x:Name="lblOperatorName" Style="{StaticResource cellValue}">
+                                Mr. Operator
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Measurement Unit
+                            </Label>
+                            <Picker x:Name="pickUnit" SelectedIndexChanged="Unit_Tapped" SelectedIndex="1">
+                                <Picker.Items>
+                                    <x:String>Centimeters</x:String>
+                                    <x:String>Meters</x:String>
+                                    <x:String>Milimeters</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="RefreshInterval_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Refresh Interval
+                            </Label>
+                            <Label x:Name="lblRefreshInterval" Style="{StaticResource cellValue}">
+                                1200
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+                <TableSection Title="Admin Mode">
+                    <SwitchCell Text="Turn Admin Mode ON" On="False" OnChanged="SwitchCell_OnChanged"/>
+                </TableSection>
+
+                <TableSection Title="Inclinometer Calibration">
+                    <ViewCell Tapped="RotationalCorrA_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                RotationalCorrA
+                            </Label>
+                            <Label x:Name="lblRotationalCorrA" Style="{StaticResource cellValue}">
+                                lblRotationalCorrA
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                     <ViewCell Tapped="RotationalCorrB_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                RotationalCorrB
+                            </Label>
+                            <Label x:Name="lblRotationalCorrB" Style="{StaticResource cellValue}">
+                                lblRotationalCorrB
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="SensitivityFactorA_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                SensitivityFactorA
+                            </Label>
+                            <Label x:Name="lblSensitivityFactorA" Style="{StaticResource cellValue}">
+                                lblSensitivityFactorA
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="SensitivityFactorB_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                SensitivityFactorB
+                            </Label>
+                            <Label x:Name="lblSensitivityFactorB" Style="{StaticResource cellValue}">
+                                lblSensitivityFactorB
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+
+                    <ViewCell Tapped="BatteryMultiplier_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                BatteryMultiplier
+                            </Label>
+                            <Label x:Name="lblBatteryMultiplier" Style="{StaticResource cellValue}">
+                                lblBatteryMultiplier
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="BatteryOffset_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                BatteryOffset
+                            </Label>
+                            <Label x:Name="lblBatteryOffset" Style="{StaticResource cellValue}">
+                                lblBatteryOffset
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    
+                </TableSection>
+                
+                <!--<TableSection Title="Inclinometer Settings">
+                    <ViewCell x:Name="cellCalibtration" IsEnabled="False">
+                        <StackLayout Padding="12,22,12,22"
+                                     Orientation="Horizontal">
+
+                            <Label Style="{StaticResource cellCategory}">
+                                Calibration
+                            </Label>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="End"
+                                              VerticalOptions="FillAndExpand"
+                                              Source="resource://IncliForms.Views.chevron-right.svg"/>
+
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>-->
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

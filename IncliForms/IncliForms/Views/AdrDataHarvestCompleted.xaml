@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.AdrDataHarvestCompleted"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <StackLayout 
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand">
+
+                <ffimg:SvgCachedImage HorizontalOptions="Center"
+                                      VerticalOptions="CenterAndExpand"
+                                      HeightRequest="256"
+                                      WidthRequest="256"
+                                      Margin="0,0,0,12"
+                                      ffimg:Aspect="AspectFit"
+                                      Source="resource://IncliForms.Resources.records_saved.svg"/>
+
+                <Label x:Name="lblConnecting"
+                       HorizontalOptions="Center"
+                       Text="Data Collected"
+                       Style="{StaticResource notHeader}"/>
+
+                <Label Style="{StaticResource notText}"
+                       HorizontalOptions="Center"
+                       Text="Session data saved successfully."/>
+
+                <StackLayout Margin="0,20,0,24"
+                             Orientation="Horizontal">
+
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="24"
+                               Padding="8"
+                               WidthRequest="26"
+                               HeightRequest="26"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               BackgroundColor="{StaticResource Primary}">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Excel_Tapped"/>
+                            </Frame.GestureRecognizers>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.i_excel.svg"/>
+                        </Frame>
+                        <Label Text="Excel Datasheet" Style="{StaticResource lblAnnotation}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="24"
+                               Padding="8"
+                               WidthRequest="26"
+                               HeightRequest="26"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               BackgroundColor="{StaticResource Primary}">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Rpp_Tapped"/>
+                            </Frame.GestureRecognizers>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.i_rpp.svg"/>
+                        </Frame>
+                        <Label Text="Rpp File" Style="{StaticResource lblAnnotation}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="24"
+                               Padding="8"
+                               WidthRequest="26"
+                               HeightRequest="26"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               BackgroundColor="{StaticResource Primary}">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Csv_Tapped"/>
+                            </Frame.GestureRecognizers>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.i_csv.svg"/>
+                        </Frame>
+                        <Label Text="Csv Datasheet" Style="{StaticResource lblAnnotation}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                    
+                    <StackLayout VerticalOptions="CenterAndExpand"
+                                 HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="24"
+                               Padding="8"
+                               WidthRequest="26"
+                               HeightRequest="26"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"
+                               BackgroundColor="{StaticResource Accent}">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Charts_Tapped"/>
+                            </Frame.GestureRecognizers>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.i_charts.svg"/>
+                        </Frame>
+                        <Label Text="View Charts" Style="{StaticResource lblAnnotation}"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+                <!--|-->
+
+                <Button Text="Main Menu"
+                            Style="{StaticResource btnSecondary}"
+                            x:Name="btnMainMenu"
+                            Clicked="btnMainMenu_Clicked"/>
+
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

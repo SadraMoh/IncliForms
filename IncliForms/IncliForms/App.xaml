@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IncliForms.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Background">#F5f5f5</Color>
+            <Color x:Key="Icon">#DCDCDC</Color>
+
+            <Color x:Key="Primary">#FF8E26</Color>
+            <Color x:Key="PrimaryDark">#DC7A20</Color>
+            <Color x:Key="Accent">#FFCF26</Color>
+
+            <Color x:Key="Disabled">#E7E7E7</Color>
+
+            <Style TargetType="TableView" ApplyToDerivedTypes="True">
+                <Setter Property="Background" Value="#fff" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="cellName">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="TextColor" Value="#999" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="cellValue">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#111" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="cellCategory">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextColor" Value="#000" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="notHeader">
+                <Setter Property="TextColor" Value="#666" />
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="notText">
+                <Setter Property="TextColor" Value="#aaa" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="lblAnnotation">
+                <Setter Property="TextColor" Value="#CDCDCD" />
+                <Setter Property="FontSize" Value="9" />
+            </Style>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="Background" Value="#f5f5f5" />
+            </Style>
+
+            <Style TargetType="ScrollView" ApplyToDerivedTypes="True">
+                <Setter Property="Padding" Value="16"/>
+            </Style>
+
+            <Style TargetType="StackLayout" x:Key="ActionPanel">
+                <Setter Property="Margin" Value="0,20,0,0" />
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="btnPrimary">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            </Style>
+
+            <Style TargetType="Button" x:Key="btnSecondary">
+                <Setter Property="TextColor" Value="#999" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="BackgroundColor" Value="#E7E7E7" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

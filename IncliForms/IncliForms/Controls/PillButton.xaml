@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Controls.PillButton">
+    <ContentView.Content>
+        <Label Text="Todo"/>
+        <!--<Frame CornerRadius="21"
+               Padding="8"
+               AbsoluteLayout.LayoutFlags="PositionProportional"
+               AbsoluteLayout.LayoutBounds="0,0,42,42"
+               BackgroundColor="Orange"
+               x:Name="main">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Tapped"/>
+            </Frame.GestureRecognizers>
+
+            <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                          VerticalOptions="FillAndExpand"
+                                          Source="resource://IncliForms.Views.icon_inclinometer.svg"/>
+        </Frame>-->
+    </ContentView.Content>
+</ContentView>

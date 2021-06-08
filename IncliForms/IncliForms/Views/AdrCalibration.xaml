@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IncliForms.Views.AdrCalibration">
+    <ContentPage.Content>
+        <TableView Intent="Settings"
+                           RowHeight="72"
+                           >
+            <TableRoot>
+                <TableSection>
+                    <ViewCell Tapped="RotA_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Rotational Corr A
+                            </Label>
+                            <Label x:Name="lblRotA" Style="{StaticResource cellValue}">
+                                1.1mm
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="RotB_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Rotational Corr B
+                            </Label>
+                            <Label x:Name="lblRotB" Style="{StaticResource cellValue}">
+                                1.05
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="SensA_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Sensitivity Factor A
+                            </Label>
+                            <Label x:Name="lblSensA" Style="{StaticResource cellValue}">
+                                1.05
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="SensB_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Sensitivity Factor B
+                            </Label>
+                            <Label x:Name="lblSensB" Style="{StaticResource cellValue}">
+                                1.05
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

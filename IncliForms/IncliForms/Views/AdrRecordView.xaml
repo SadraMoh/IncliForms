@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IncliForms.Views.AdrRecordView"
+             Title="Record View">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete Device"
+                 IconImageSource="i_trash.png"
+                     Clicked="Delete_Clicked"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <TableView Intent="Settings"
+                   RowHeight="72">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Date Harvested
+                            </Label>
+                            <Label x:Name="lblDateHarvested" Style="{StaticResource cellValue}">
+                                2020/01/01
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label  Style="{StaticResource cellName}">
+                                Site Name
+                            </Label>
+                            <Label x:Name="lblSiteName" Style="{StaticResource cellValue}">
+                                Karkheh
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label  Style="{StaticResource cellName}">
+                                Operator Name
+                            </Label>
+                            <Label x:Name="lblOperatorName" Style="{StaticResource cellValue}">
+                                Jeff
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                StartDepth
+                            </Label>
+                            <Label x:Name="lblStartDepth" Style="{StaticResource cellValue}">
+                                30
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                EndDepth
+                            </Label>
+                            <Label x:Name="lblEndDepth" Style="{StaticResource cellValue}">
+                                0
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="Files">
+                    <ViewCell x:Name="cellExcel" Tapped="cellExcel_Tapped">
+                        <Label Padding="12" Style="{StaticResource notHeader}">Excel File</Label>
+                    </ViewCell>
+                    <ViewCell x:Name="cellRpp" Tapped="cellRpp_Tapped">
+                        <Label Padding="12" Style="{StaticResource notHeader}">Rpp File</Label>
+                    </ViewCell>
+                    <ViewCell x:Name="cellCsv" Tapped="cellCsv_Tapped">
+                        <Label Padding="12" Style="{StaticResource notHeader}">Csv File</Label>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

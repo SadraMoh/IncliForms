@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IncliForms.Controls"
+             x:Class="IncliForms.Views.Archives"
+             Appearing="ContentPage_Appearing">
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Text="Refresh" Clicked="Refresh_Clicked"/>-->
+        <ToolbarItem Text="Clear" Clicked="Clear_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ListView x:Name="listMain" RowHeight="72">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Tapped="ViewCell_Tapped">
+                        <StackLayout Spacing="12" Padding="20,8">
+                            <Label Style="{StaticResource notHeader}" Margin="0" Text="{Binding Name}"/>
+                            <Label Style="{StaticResource cellName}" Text="{Binding Date}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

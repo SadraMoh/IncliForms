@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IncliForms.Views.AdrGraph">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout x:Name="stckA">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Depth" WidthRequest="36"/>
+                    <Label HorizontalOptions="CenterAndExpand">
+                        A0 and A180
+                    </Label>
+                    <Label Text="Delta" WidthRequest="36"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout x:Name="stckB">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Depth" WidthRequest="36"/>
+                    <Label HorizontalOptions="CenterAndExpand">
+                        B0 and B180
+                    </Label>
+                    <Label Text="Delta" WidthRequest="36"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

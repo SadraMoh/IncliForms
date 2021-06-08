@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.ConnectionFailed"
+             Title="Connection Failed"
+             BackgroundColor="#f5f5f5"
+             Shell.NavBarIsVisible="False"
+             >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <StackLayout 
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand">
+
+                <ffimg:SvgCachedImage HorizontalOptions="Center"
+                                      VerticalOptions="CenterAndExpand"
+                                      HeightRequest="256"
+                                      WidthRequest="256"
+                                      ffimg:Aspect="AspectFit"
+                                      Source="resource://IncliForms.Resources.bluetooth_lost.svg"/>
+
+                <Label x:Name="lblConnecting"
+                       HorizontalOptions="Center"
+                       Text="Connection Failed"
+                       Style="{StaticResource notHeader}"/>
+
+                <Label Style="{StaticResource notText}"
+                       WidthRequest="324"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Text="Attempting to connect to the selected device was not successful."/>
+
+                <StackLayout Margin="0,20,0,0" Orientation="Vertical">
+                    <Button Style="{StaticResource btnPrimary}"
+                            WidthRequest="324"
+                            x:Name="btnTryAgain"
+                            Clicked="btnTryAgain_Clicked"
+                            HorizontalOptions="Center"
+                            Text="Try Again"/>
+                    <Button Style="{StaticResource btnSecondary}"
+                            WidthRequest="324"
+                            x:Name="btnChangeDevice"
+                            Clicked="btnChangeDevice_Clicked"
+                            HorizontalOptions="Center"
+                            Text="Change Device"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

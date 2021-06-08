@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IncliForms.Views.AddDevice"
+             Title="Add a new device">
+    <ContentPage.Content>
+        <ScrollView>
+            <Frame VerticalOptions="Start">
+                <StackLayout>
+                    <Label Text="Borehole Name"
+                           Style="{StaticResource cellName}"
+                           HorizontalOptions="Start" />
+                    <Entry x:Name="txtSiteName" Keyboard="Text" Placeholder=""/>
+                    <Label Text="Borehole Depth"
+                           Style="{StaticResource cellName}"
+                           HorizontalOptions="Start" />
+                    <Entry x:Name="txtDepth" Keyboard="Text" Placeholder=""/>
+                    <Label Text="Borehole Number"
+                           Style="{StaticResource cellName}"
+                           HorizontalOptions="Start" />
+                    <Entry x:Name="txtBoreholeNo" Keyboard="Numeric" Placeholder=""/>
+                    <Label Text="Probe Serial"
+                           Style="{StaticResource cellName}"
+                           HorizontalOptions="Start" />
+                    <Entry x:Name="txtProbeSerial" Keyboard="Text" Placeholder=""/>
+                    <Label Text="Reel Serial"
+                           Style="{StaticResource cellName}"
+                           HorizontalOptions="Start" />
+                    <Entry x:Name="txtReelSerial" Keyboard="Text" Placeholder=""/>
+                    <Label Text="Device Model"/>
+                    <Picker x:Name="pickDeviceModel">
+                        <Picker.Items>
+                            <x:String>ADR Inclinometer Model Ad-600</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Bluetooth UUID"/>
+                    <Picker x:Name="pickBluetooth">
+                        <Picker.Items>
+                            <x:String>Ad-600</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <StackLayout Style="{StaticResource ActionPanel}">
+                        <Button Clicked="btnAdd_Clicked" HorizontalOptions="FillAndExpand" Style="{StaticResource btnPrimary}" x:Name="btnAdd" Text="Add"/>
+                        <Button Clicked="btnCancel_Clicked" HorizontalOptions="FillAndExpand" Style="{StaticResource btnSecondary}" x:Name="btnCancel" Text="Cancel"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

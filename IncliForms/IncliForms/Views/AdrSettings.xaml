@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.AdrSettings">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete Device"
+                 IconImageSource="i_trash.png"
+                     Clicked="DeleteDevice_Clicked"
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <TableView Intent="Settings"
+                   RowHeight="72">
+            <TableRoot>
+                <TableSection>
+                    <ViewCell Tapped="cellBoreholeName_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Name
+                            </Label>
+                            <Label x:Name="lblBoreholeName" Style="{StaticResource cellValue}">
+                                Site A End Of Crest
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell>
+                        <StackLayout Padding="12">
+                            <Label  Style="{StaticResource cellName}">
+                                Model Type
+                            </Label>
+                            <Label x:Name="lblModelName" Style="{StaticResource cellValue}">
+                                ADR Inclinometer Model AD-600
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label  Style="{StaticResource cellName}">
+                                Software Version
+                            </Label>
+                            <Label x:Name="lblVersion" Style="{StaticResource cellValue}">
+                                1.2
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                UUID
+                            </Label>
+                            <Label x:Name="lblUUID" Style="{StaticResource cellValue}">
+                                c120a8da-b90b-4a78-97f0-2ddd212ae61b
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="cellBoreholeNumber_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Borehole Number
+                            </Label>
+                            <Label x:Name="lblBoreholeNumber" Style="{StaticResource cellValue}">
+                                1
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="cellBoreholeDepth_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Borehole Depth
+                            </Label>
+                            <Label x:Name="lblBoreholeDepth" Style="{StaticResource cellValue}">
+                                32
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="cellStartDepth_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Start Depth
+                            </Label>
+                            <Label x:Name="lblStartDepth" Style="{StaticResource cellValue}">
+                                32
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell Tapped="cellEndDepth_Tapped">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                End Depth
+                            </Label>
+                            <Label x:Name="lblEndDepth" Style="{StaticResource cellValue}">
+                                0.5
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Probe Serial
+                            </Label>
+                            <Label x:Name="lblProbeSerial" Style="{StaticResource cellValue}">
+                                1628
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell IsEnabled="False">
+                        <StackLayout Padding="12">
+                            <Label Style="{StaticResource cellName}">
+                                Reel Serial
+                            </Label>
+                            <Label x:Name="lblReelSerial" Style="{StaticResource cellValue}">
+                                7568
+                            </Label>
+                        </StackLayout>
+                    </ViewCell>
+                    <ViewCell x:Name="cellCalibtration" Tapped="cellCalibtration_Tapped">
+                        <StackLayout Padding="12,22,12,22"
+                                             Orientation="Horizontal">
+
+                            <Label Style="{StaticResource cellCategory}">
+                                Calibration And Fine Tuning
+                            </Label>
+
+                            <ffimg:SvgCachedImage HorizontalOptions="EndAndExpand"
+                                              VerticalOptions="FillAndExpand"
+                                              Source="resource://IncliForms.Resources.chevron_right.svg"/>
+
+                        </StackLayout>
+                    </ViewCell>
+                </TableSection>
+
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</ContentPage>

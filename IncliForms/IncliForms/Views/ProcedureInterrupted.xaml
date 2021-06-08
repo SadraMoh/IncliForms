@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.ProcedureInterrupted"
+             Title="Procedure Interrupted">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+            <StackLayout 
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand">
+
+                <ffimg:SvgCachedImage HorizontalOptions="End"
+                                      HeightRequest="256"
+                                      WidthRequest="256"
+                                      Aspect="AspectFill"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.bluetooth_lost.svg"/>
+
+                <Label x:Name="lblConnecting"
+                       HorizontalOptions="Center"
+                       Text="Connection Lost"
+                       Style="{StaticResource notHeader}"/>
+
+                <Label Style="{StaticResource notText}"
+                       HorizontalOptions="Center"
+                       Text="Bluetooth connection was lost during data harvest. Progress has been saved and will be accessable again after connection is restored."/>
+
+                <StackLayout Margin="0,20,0,0">
+                    <Button Style="{StaticResource btnPrimary}"
+                            Text="Reconnect"/>
+                    <Button Style="{StaticResource btnSecondary}"
+                            Text="Discard Harvest"/>
+                    <Label Style="{StaticResource lblAnnotation}"
+                           HorizontalOptions="Center"
+                           Text="Collected data will be lost"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

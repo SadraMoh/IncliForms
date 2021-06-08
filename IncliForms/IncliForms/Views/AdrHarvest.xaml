@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" xmlns:controls="clr-namespace:IncliForms.Controls"
+             x:Class="IncliForms.Views.AdrHarvest"
+             Disappearing="ContentPage_Disappearing"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
+             Shell.NavBarIsVisible="False"
+             >
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand"
+              RowSpacing="0"
+              ColumnSpacing="0"
+              Padding="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <!--Top Nav-->
+            <Frame BackgroundColor="#f5f5f5"
+                   Grid.Row="0"
+                   HeightRequest="42"
+                   HasShadow="True"
+                   Margin="0"
+                   Padding="30,12,12,12">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Text="L"/>
+                    <Label Grid.Column="1" Text="A+"/>
+                    <Label Grid.Column="2" Text="A-"/>
+                    <Label Grid.Column="3" Text="Δa"/>
+                    <Label Grid.Column="4" Text="B+"/>
+                    <Label Grid.Column="5" Text="B-"/>
+                    <Label Grid.Column="6" Text="Δb"/>
+
+                </Grid>
+            </Frame>
+
+            <!--Data List-->
+            <StackLayout Grid.Row="1"
+                        Padding="0"
+                        Margin="0"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="#fff"
+                        x:Name="scrollViewMain">
+
+                <ListView RowHeight="48" x:Name="listViewMain"
+                          VerticalOptions="FillAndExpand"
+                          SelectionMode="Single"
+                          ItemSelected="ListViewMain_ItemSelected"
+                          ItemsSource="{Binding Datalist}">
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+                            <ViewCell x:Name="D">
+
+                                <!--<controls:AdrHarvestDataBlockControl/>-->
+
+                                <Grid VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="5"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <BoxView Grid.Column="0"
+                                             WidthRequest="12"
+                                             HeightRequest="12"
+                                             CornerRadius="6"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center"
+                                             Margin="0"/>
+
+                                    <Label Grid.Column="1" Text="{Binding Depth, StringFormat='{0:F2}'}" />
+                                    <Label Grid.Column="2" Text="{Binding Aplus, StringFormat='{0:F2}'}" />
+                                    <Label Grid.Column="3" Text="{Binding Aminus, StringFormat='{0:F2}'}"/>
+                                    <Label Grid.Column="4" Text="{Binding DeltaA, StringFormat='{0:F2}'}"/>
+                                    <Label Grid.Column="5" Text="{Binding Bplus, StringFormat='{0:F2}'}" />
+                                    <Label Grid.Column="6" Text="{Binding Bminus, StringFormat='{0:F2}'}"/>
+                                    <Label Grid.Column="7" Text="{Binding DeltaB, StringFormat='{0:F2}'}"/>
+                                </Grid>
+
+                            </ViewCell>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+            <!--Control Panel-->
+            <Frame Grid.Row="2"
+                   Margin="0,2,0,0"
+                   HasShadow="True"
+                   HeightRequest="336"
+                   VerticalOptions="End">
+                <StackLayout>
+
+                    <Grid Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.Column="0"
+                                     Grid.Row="0"
+                                     Grid.ColumnSpan="2">
+                            <Label Style="{StaticResource cellCategory}"
+                               FontSize="40"
+                               x:Name="lblA"
+                               Text="A: 24.5"/>
+                            <Label Text="m" x:Name="lblAUnit" VerticalOptions="End" Margin="0,0,0,13"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal"
+                                     Grid.ColumnSpan="2"
+                                     Grid.Column="0"
+                                     Grid.Row="1">
+                            <Label Style="{StaticResource cellCategory}"
+                               FontSize="40"
+                               x:Name="lblB"
+                               Text="B: 24.5"/>
+                            <Label Text="m" x:Name="lblBUnit" VerticalOptions="End" Margin="0,0,0,13"/>
+                        </StackLayout>
+                        <BoxView Grid.ColumnSpan="2"
+                                 Grid.Row="2"
+                                 HeightRequest="1"
+                                 BackgroundColor="{StaticResource Icon}"/>
+                        <Label Style="{StaticResource cellCategory}"
+                               HorizontalOptions="FillAndExpand"
+                               FontSize="36"
+                               Grid.Column="0"
+                               Grid.Row="3"
+                               x:Name="lblDepth"
+                               Text="Dp: 24.5"/>
+
+                        <StackLayout Orientation="Vertical"
+                               Grid.Column="1"
+                               Grid.Row="3"
+                               Margin="6,10,6,20"
+                               HorizontalOptions="FillAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Style="{StaticResource cellName}"
+                                   Margin="0"
+                                   VerticalOptions="Start"
+                                   HorizontalOptions="StartAndExpand"
+                                   Text="Battery"/>
+                                <Label Style="{StaticResource cellName}"
+                                       x:Name="lblBatteryPercentage"
+                                       Margin="0"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="End"
+                                       Text="96%"/>
+                            </StackLayout>
+                            <ProgressBar x:Name="progressBattery" HeightRequest="6" Progress="0.5"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0"
+                                     Grid.Row="0"
+                                     VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Frame CornerRadius="24"
+                                   Padding="8"
+                                   WidthRequest="26"
+                                   HeightRequest="26"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BackgroundColor="Orange">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="UpClicked_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.chevron_up.svg"/>
+                            </Frame>
+                            <Label Text="Redo" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="0"
+                                     Grid.Row="1" VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Frame CornerRadius="24"
+                                   Padding="8"
+                                   WidthRequest="26"
+                                   HeightRequest="26"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BackgroundColor="Orange">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="DownClicked_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.chevron_down.svg"/>
+                            </Frame>
+                            <Label Text="Undo" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     Grid.Row="0"
+                                     Grid.RowSpan="2"
+                                      VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Frame CornerRadius="50"
+                                   Padding="12"
+                                   WidthRequest="62"
+                                   HeightRequest="62"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   x:Name="btnLog"
+                                   BackgroundColor="Orange">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="LogRecord_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.plus.svg"/>
+                            </Frame>
+                            <Label Text="Log Current Reading" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2"
+                                     Grid.Row="0" VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Switch VerticalOptions="Center"/>
+                            <Label Text="Auto" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2"
+                                     Grid.Row="1" VerticalOptions="CenterAndExpand"
+                                     HorizontalOptions="CenterAndExpand">
+                            <Frame CornerRadius="24"
+                                   Padding="8"
+                                   WidthRequest="26"
+                                   HeightRequest="26"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   BackgroundColor="Orange">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="EndHarvest_Tapped"/>
+                                </Frame.GestureRecognizers>
+
+                                <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.checkmark.svg"/>
+                            </Frame>
+                            <Label Text="Next Phase" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+            </Frame>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

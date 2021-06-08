@@ -1,0 +1,127 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icon_inclinometer.svg" />
+    <None Remove="Resources\add_device.svg" />
+    <None Remove="Resources\bluetooth.svg" />
+    <None Remove="Resources\bluetooth_lost.svg" />
+    <None Remove="Resources\checkmark.svg" />
+    <None Remove="Resources\chevron_down.svg" />
+    <None Remove="Resources\chevron_right.svg" />
+    <None Remove="Resources\chevron_up.svg" />
+    <None Remove="Resources\flyout_gradient.svg" />
+    <None Remove="Resources\i_charts.svg" />
+    <None Remove="Resources\i_csv.svg" />
+    <None Remove="Resources\i_excel.svg" />
+    <None Remove="Resources\i_rpp.svg" />
+    <None Remove="Resources\i_share.svg" />
+    <None Remove="Resources\pause.svg" />
+    <None Remove="Resources\plus.svg" />
+    <None Remove="Resources\records_saved.svg" />
+    <None Remove="Resources\settings.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\add_device.svg" />
+    <EmbeddedResource Include="Resources\bluetooth.svg" />
+    <EmbeddedResource Include="Resources\bluetooth_lost.svg" />
+    <EmbeddedResource Include="Resources\checkmark.svg" />
+    <EmbeddedResource Include="Resources\chevron_down.svg" />
+    <EmbeddedResource Include="Resources\chevron_right.svg" />
+    <EmbeddedResource Include="Resources\chevron_up.svg" />
+    <EmbeddedResource Include="Resources\flyout_gradient.svg" />
+    <EmbeddedResource Include="Resources\icon_inclinometer.svg" />
+    <EmbeddedResource Include="Resources\i_charts.svg" />
+    <EmbeddedResource Include="Resources\i_csv.svg" />
+    <EmbeddedResource Include="Resources\i_excel.svg" />
+    <EmbeddedResource Include="Resources\i_rpp.svg" />
+    <EmbeddedResource Include="Resources\i_share.svg" />
+    <EmbeddedResource Include="Resources\pause.svg" />
+    <EmbeddedResource Include="Resources\plus.svg" />
+    <EmbeddedResource Include="Resources\records_saved.svg" />
+    <EmbeddedResource Include="Resources\settings.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
+    <PackageReference Include="XamEffects" Version="1.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ProcedureInterrupted.xaml.cs">
+      <DependentUpon>ProcedureInterrupted.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Controls\AddDeviceButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\DeviceBlock.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\PillButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\RecordListItem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AddDevice.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrCalibration.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrDataHarvestCompleted.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrGraph.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrHarvest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrImageGraph.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrRecordView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AdrSettings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Archives.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Connecting.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ConnectionFailed.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Devices.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HeaderContentView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:IncliForms.Controls" xmlns:ffimg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="IncliForms.Views.Devices"
+             BackgroundColor="#f5f5f5"
+             Appearing="ContentPage_Appearing"
+             Title="Submitted Devices">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add New Device" 
+                     Priority="0"
+                     Order="Secondary"
+                     Clicked="AddDevice_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="#f5f5f5">
+            <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All">
+                <Grid x:Name="gridMain">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0"
+                                 x:Name="stackFirst"
+                                 Orientation="Vertical">
+                        
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" 
+                                 x:Name="stackSecond"
+                                 Orientation="Vertical">
+                        
+                    </StackLayout>
+
+                </Grid>
+            </ScrollView>
+
+            <!--<Frame CornerRadius="24"
+                       Padding="8"
+                       AbsoluteLayout.LayoutFlags="PositionProportional"
+                       AbsoluteLayout.LayoutBounds=".96,.96,48,48"
+                       BackgroundColor="Orange"
+                       x:Name="btnSettings">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="AddDevice_Clicked"/>
+                </Frame.GestureRecognizers>
+
+                <ffimg:SvgCachedImage HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      Source="resource://IncliForms.Resources.chevron_right.svg"/>
+            </Frame>-->
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
