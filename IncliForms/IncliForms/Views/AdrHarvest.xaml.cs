@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 using IncliForms.Models.Inclinometer;
 using System.Collections.Specialized;
 using IncliForms.Services;
+using System.Threading.Tasks;
 
 namespace IncliForms.Views
 {
@@ -164,19 +165,34 @@ namespace IncliForms.Views
                             break;
                     }
 
-
                     #region Battery
 
-                    // 0 < x < 1
+                    // normalize to 0 < x < 1
                     float normalizedProgress = (battery - 6.5f) / (8.4f - 6.5f);
-                    progressBattery.Progress = normalizedProgress;
-                    // color
-                    if (normalizedProgress > .5f)
+
+                    // discretion
+                    if (normalizedProgress >= .75f) // more than 75
+                    {
+                        normalizedProgress = 1f;
                         progressBattery.ProgressColor = Color.Green;
-                    else if (normalizedProgress <= 0.5 && normalizedProgress > .3f)
+                    }
+                    if (normalizedProgress >= .5f && normalizedProgress < .75f) // between 75 and 50
+                    {
+                        normalizedProgress = 0.75f;
+                        progressBattery.ProgressColor = Color.Green;
+                    }
+                    else if (normalizedProgress >= 0.25 && normalizedProgress < 0.5f) // between 50 and 25
+                    {
+                        normalizedProgress = 0.5f;
                         progressBattery.ProgressColor = Color.Yellow;
-                    else if (normalizedProgress <= .3f)
+                    }
+                    else if (normalizedProgress <= 0.25f) // less than 25
+                    {
+                        normalizedProgress = 0.25f;
                         progressBattery.ProgressColor = Color.Red;
+                    }
+
+                    progressBattery.Progress = normalizedProgress;
 
                     lblBatteryPercentage.Text = $"{Math.Round(progressBattery.Progress * 100)}%";
 
@@ -220,6 +236,13 @@ namespace IncliForms.Views
 
             //scrollViewMain.ScrollToAsync(0, scrollViewMain.ScrollY + 48, true);
             listViewMain.ScrollTo(listViewMain.SelectedItem, ScrollToPosition.Center, false);
+
+            btnLog.BackgroundColor = Color.GreenYellow;
+
+            var a = new Animation((v) => btnLog.BackgroundColor =
+            Color.FromHsla(v + 0.10, Color.Orange.Saturation, Color.Orange.Luminosity),
+            Color.Orange.Luminosity, Color.Orange.Hue - 0.10f);
+            a.Commit(this, "hello", rate: 16, length: 300);
 
             if (!isSecondPhase)
             {

@@ -14,7 +14,7 @@
                                 Workplace Name
                             </Label>
                             <Label x:Name="lblWorkplaceName" Style="{StaticResource cellValue}">
-                                Karkheh
+                                Site Name
                             </Label>
                         </StackLayout>
                     </ViewCell>
@@ -24,7 +24,7 @@
                                 Operator Name
                             </Label>
                             <Label x:Name="lblOperatorName" Style="{StaticResource cellValue}">
-                                Mr. Operator
+                                Operator Name
                             </Label>
                         </StackLayout>
                     </ViewCell>

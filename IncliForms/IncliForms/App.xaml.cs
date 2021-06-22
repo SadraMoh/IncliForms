@@ -1,6 +1,9 @@
-﻿using IncliForms.Utility;
+﻿using Android;
+using IncliForms.Models.Inclinometer;
+using IncliForms.Utility;
 using IncliForms.Views;
 using System;
+using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,12 +37,25 @@ namespace IncliForms
         {
             InitializeComponent();
 
-            //_bluetoothAdapter = DependencyService.Get<IAdapter>();
-
-            //_bluetoothAdapter.ScanTimeout = TimeSpan.FromSeconds(12);
-            //_bluetoothAdapter.ConnectionTimeout = TimeSpan.FromSeconds(12);
-
             MainPage = new AppShell();
+
+            //var a = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDocuments).AbsolutePath;
+            //Directory.CreateDirectory(Path.Combine(a, "incliforms"));
+
+
+            //System.Collections.Generic.List<Models.Inclinometer.AdrDatablock> datablocks = null;
+            //var record = new Models.Inclinometer.AdrRecord();
+
+            //record.EndDepth = 10;
+
+            //Random r = new Random();
+            //for (float i = 0; i < record.EndDepth; i += 0.5f)
+            //{
+            //    datablocks.Add(new AdrDatablock() {  Aminus = r.Next()});
+            //}
+
+
+            //MainPage = new AdrImageGraph(record: record, datablocks: datablocks);
         }
 
         protected override void OnStart()

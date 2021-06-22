@@ -134,7 +134,7 @@
                             <Label Style="{StaticResource cellCategory}"
                                FontSize="40"
                                x:Name="lblA"
-                               Text="A: 24.5"/>
+                               Text="A: 00.0"/>
                             <Label Text="m" x:Name="lblAUnit" VerticalOptions="End" Margin="0,0,0,13"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal"
@@ -144,7 +144,7 @@
                             <Label Style="{StaticResource cellCategory}"
                                FontSize="40"
                                x:Name="lblB"
-                               Text="B: 24.5"/>
+                               Text="B: 00.0"/>
                             <Label Text="m" x:Name="lblBUnit" VerticalOptions="End" Margin="0,0,0,13"/>
                         </StackLayout>
                         <BoxView Grid.ColumnSpan="2"
@@ -157,7 +157,7 @@
                                Grid.Column="0"
                                Grid.Row="3"
                                x:Name="lblDepth"
-                               Text="Dp: 24.5"/>
+                               Text="Dp: 00.0"/>
 
                         <StackLayout Orientation="Vertical"
                                Grid.Column="1"
@@ -175,9 +175,9 @@
                                        Margin="0"
                                        VerticalOptions="Start"
                                        HorizontalOptions="End"
-                                       Text="96%"/>
+                                       Text="0%"/>
                             </StackLayout>
-                            <ProgressBar x:Name="progressBattery" HeightRequest="6" Progress="0.5"/>
+                            <ProgressBar x:Name="progressBattery" HeightRequest="6" Progress="0.0"/>
                         </StackLayout>
                     </Grid>
 
@@ -258,7 +258,7 @@
                         <StackLayout Grid.Column="2"
                                      Grid.Row="0" VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="CenterAndExpand">
-                            <Switch VerticalOptions="Center"/>
+                            <Switch IsEnabled="False" VerticalOptions="Center"/>
                             <Label Text="Auto" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2"

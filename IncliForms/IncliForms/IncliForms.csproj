@@ -60,6 +60,12 @@
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.AndroidX.Core">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.androidx.core\1.3.2.1\lib\monoandroid90\Xamarin.AndroidX.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Xaml">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.forms\5.0.0.2012\lib\MonoAndroid10.0\Xamarin.Forms.Xaml.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

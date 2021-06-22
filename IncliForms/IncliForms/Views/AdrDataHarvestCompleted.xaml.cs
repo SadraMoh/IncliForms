@@ -1,7 +1,9 @@
-﻿using ClosedXML.Excel;
+﻿using Android;
+using ClosedXML.Excel;
 using IncliForms.Models;
 using IncliForms.Models.Inclinometer;
 using IncliForms.Services;
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,7 +27,13 @@ namespace IncliForms.Views
         /// <summary>
         /// The Directory to save the files in
         /// </summary>
-        private string Dir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+        //private string Dir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //private string Dir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //private string Dir = "/AzarDagigRooz/IncliForms";
+
+        private string Dir = Path.Combine(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDocuments).AbsolutePath, "Incliforms");
+
         /// <summary>
         /// The Name of the File
         /// </summary>
@@ -50,6 +58,27 @@ namespace IncliForms.Views
 
         private async void InitFiles()
         {
+
+        askStorageRead:
+            await Permissions.RequestAsync<Permissions.StorageRead>();
+
+        askStorageWrite:
+            await Permissions.RequestAsync<Permissions.StorageWrite>();
+
+
+            if ((await Permissions.CheckStatusAsync<Permissions.StorageWrite>()) != PermissionStatus.Granted)
+                goto askStorageRead;
+
+            if ((await Permissions.CheckStatusAsync<Permissions.StorageWrite>()) != PermissionStatus.Granted)
+                goto askStorageWrite;
+
+            if (!Directory.Exists(Dir))
+                Directory.CreateDirectory(Dir);
+
+            FileName = $"{Inclinometer.BoreholeName}#{Inclinometer.BoreholeNumber}";
+
+            Dir = Path.Combine(Dir, $"{FileName} - ({Directory.GetDirectories(Dir).Length + 1})");
+
             await CreateRecord();
             await GenerateExcel();
             await GenerateCSV();
@@ -66,7 +95,6 @@ namespace IncliForms.Views
 
             var date = DateTime.Now;
 
-            FileName = Inclinometer.BoreholeName;
             rppPath = Path.Combine(Dir, FileName + ".rpp");
             exPath = Path.Combine(Dir, FileName + ".xlsx");
             csvPath = Path.Combine(Dir, FileName + ".csv");

@@ -43,7 +43,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <MandroidI18n />
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
@@ -140,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Soundtracks\Alert.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\LogoSplasScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

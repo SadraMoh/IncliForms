@@ -26,7 +26,7 @@ namespace IncliForms.Views
         {
             Task.Run(async () =>
             {
-                Def = (await Access.GetItemsAsync())[0];
+                Def = (await Access.GetItemAsync());
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {

@@ -11,11 +11,11 @@
         /// <summary>
         /// Dam Name
         /// </summary>
-        public string SiteName { get; set; }
+        public string SiteName { get; set; } = "Site Name";
         /// <summary>
         /// The name of the operator, using this device
         /// </summary>
-        public string OperatorName { get; set; }
+        public string OperatorName { get; set; } = "Operator Name";
         /// <summary>
         /// Record unit
         /// </summary>
@@ -23,7 +23,7 @@
         /// <summary>
         /// The interval at which the program should check for new data in the buffer
         /// </summary>
-        public int RefreshInterval { get; set; } = 1200;
+        public int RefreshInterval { get; set; } = 256;
 
         #region DefaultCalibration
         /// <summary>
