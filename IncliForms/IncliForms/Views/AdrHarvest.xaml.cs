@@ -292,9 +292,27 @@ namespace IncliForms.Views
             lblDepth.Text = $"Dp: {Depth - .5f:000.0}";
             isSecondPhase = true;
             App.PlaySound("Soundtracks/SecondPhase.mp3");
-            DisplayAlert("Second phase started", "Second Phase has started, Turn the probe 180 degrees", "Ok");
+            if (!switchAuto.IsToggled)
+                DisplayAlert("Second phase started", "Second Phase has started, Turn the probe 180 degrees", "Ok");
             listViewMain.SelectedItem = datalist[0];
             listViewMain.ScrollTo(listViewMain.SelectedItem, ScrollToPosition.MakeVisible, false);
+
+            if (switchAuto.IsToggled)
+            {
+                // Copy all data and end
+                foreach (AdrDatablock datablock in datalist)
+                {
+                    datablock.Aminus = datablock.Aplus * -1;
+                    datablock.Bminus = datablock.Bplus * -1;
+                    datablock.CalculateDeltas();
+                }
+
+                // End harvest
+                EndHarvest_Tapped(this, null);
+
+            }
+
+
         }
 
         private void EndHarvest_Tapped(object sender, EventArgs e)

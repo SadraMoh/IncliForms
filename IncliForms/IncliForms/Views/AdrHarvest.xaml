@@ -258,7 +258,7 @@
                         <StackLayout Grid.Column="2"
                                      Grid.Row="0" VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="CenterAndExpand">
-                            <Switch IsEnabled="False" VerticalOptions="Center"/>
+                            <Switch x:Name="switchAuto" IsEnabled="True" VerticalOptions="Center"/>
                             <Label Text="Auto" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
                         </StackLayout>
                         <StackLayout Grid.Column="2"
