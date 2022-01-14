@@ -51,6 +51,7 @@
         /// </summary>
         public float BatteryOffset { get; set; } = 0;
         #endregion
+      
 
     }
 

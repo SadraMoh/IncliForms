@@ -27,6 +27,8 @@ namespace IncliForms.Views
         private float B = 0;
         private float Depth = 0;
         private readonly ObservableCollection<AdrDatablock> datalist = new ObservableCollection<AdrDatablock>();
+        // 
+        private readonly bool ShouldSwitchAandBValues = false;
 
         public AdrHarvest()
         {
@@ -106,6 +108,8 @@ namespace IncliForms.Views
                 string res = (await App.Bluetooth.ReadData());
                 if (res == null) return;
 
+                //if (res.Any("!@#$%^&*()_+GHIJKLMNOPQRSTUVWXYZ".Contains)) return;
+
                 int a = res.IndexOf('A');
                 int b = res.IndexOf('B');
                 int c = res.IndexOf('C');
@@ -121,6 +125,15 @@ namespace IncliForms.Views
                 string alpha = res.Substring(a + 1, (b - a) - 1);
                 // B
                 string beta = res.Substring(b + 1, (c - b) - 1);
+
+                if (ShouldSwitchAandBValues)
+                {
+                    // Swap vars
+                    string tempAlpha = alpha;
+                    alpha = beta;
+                    beta = tempAlpha;
+                }
+
                 // *
                 string gamma = res.Substring(c + 1, (d - c) - 1);
                 // Battery on board
@@ -242,7 +255,7 @@ namespace IncliForms.Views
             var a = new Animation((v) => btnLog.BackgroundColor =
             Color.FromHsla(v + 0.10, Color.Orange.Saturation, Color.Orange.Luminosity),
             Color.Orange.Luminosity, Color.Orange.Hue - 0.10f);
-            a.Commit(this, "hello", rate: 16, length: 300);
+            a.Commit(this, "hello", rate: 16, length: 1200);
 
             if (!isSecondPhase)
             {

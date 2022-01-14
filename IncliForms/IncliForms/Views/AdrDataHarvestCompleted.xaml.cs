@@ -7,6 +7,7 @@ using IncliForms.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -38,10 +39,12 @@ namespace IncliForms.Views
         /// The Name of the File
         /// </summary>
         private string FileName;
-        ///
+
+        /// \/ initialized in <see cref="CreateRecord"/>
         private string rppPath;
         private string exPath;
         private string csvPath;
+        private int boreholeReadCount = 0;
 
         public AdrDataHarvestCompleted()
         {
@@ -80,6 +83,11 @@ namespace IncliForms.Views
             Dir = Path.Combine(Dir, $"{FileName} - ({Directory.GetDirectories(Dir).Length + 1})");
 
             await CreateRecord();
+            //Task.WaitAll(
+            //     GenerateExcel(),
+            //     GenerateCSV(),
+            //     GenerateRPP()
+            //    );
             await GenerateExcel();
             await GenerateCSV();
             await GenerateRPP();
@@ -101,7 +109,7 @@ namespace IncliForms.Views
 
             var all = await recordAccess.GetItemsAsync();
 
-            int boreholeReadCount = all.Where(i => i.InclinometerId == Inclinometer.Id).Count();
+            boreholeReadCount = all.Where(i => i.InclinometerId == Inclinometer.Id).Count();
 
             Record = new AdrRecord()
             {
@@ -411,25 +419,32 @@ namespace IncliForms.Views
             {
                 Record.RppPath = rppPath;
 
+                string monthName = DateTime.Today.ToString("MMM", CultureInfo.CurrentCulture);
+
+                string time = DateTime.Now.TimeOfDay.ToString().Split('.')[0];
+
+                string date = $"{ Record.DateHarvested.Date.Day.ToString("00") } { monthName } { Record.DateHarvested.Date.Year }";
+
                 string template =
-                    $"TIME = {Record.DateHarvested.TimeOfDay}   {Record.DateHarvested.Date}\n" +
-                    $"DIGITILT/SPIRAL = D                                                  \n" +
-                    $"ENGLISH/METRIC = M                                                   \n" +
-                    $"HOLE # = {Inclinometer.BoreholeNumber}                               \n" +
-                    $"PROJECT = 1                                                          \n" +
-                    $"JOB DESC = {Settings.SiteName}                                       \n" +
-                    $"DIR CODE = 0                                                         \n" +
-                    $"PROBE SER # = {Inclinometer.ProbeSerial}                             \n" +
-                    $"OPERATOR = {Settings.OperatorName}                                   \n" +
-                    $"START DEPTH = {Inclinometer.StartDepth}                              \n" +
-                    $"END DEPTH = {Inclinometer.EndDepth}                                  \n" +
-                    $"INCREMENT = 0.5                                                      \n" +
-                    $"INSTR CONST = 50000                                                  \n" +
-                    $"ROTATIONAL CORR A = {Settings.RotationalCorrA}                   \n" +
-                    $"ROTATIONAL CORR B = {Settings.RotationalCorrB}                   \n" +
-                    $"SENSITIVITY FACTOR A = {Settings.SensitivityFactorA}             \n" +
-                    $"SENSITIVITY FACTOR B = {Settings.SensitivityFactorB}             \n" +
-                    $"\n\n";
+                    $"TIME = {time}   {date}                                                 \r\n" +
+                    $"DIGITILT/SPIRAL = D                                                    \r\n" +
+                    $"ENGLISH/METRIC = M                                                     \r\n" +
+                    //$"HOLE # = I{Inclinometer.BoreholeName}-{Inclinometer.BoreholeNumber}  \r\n" +
+                    $"HOLE # = {Inclinometer.BoreholeName}                                   \r\n" +
+                    $"PROJECT = 1                                                            \r\n" +
+                    $"JOB DESC = {Settings.SiteName}                                         \r\n" +
+                    $"DIR CODE = 0                                                           \r\n" +
+                    $"PROBE SER # = {Inclinometer.ProbeSerial}                               \r\n" +
+                    $"OPERATOR = {Settings.OperatorName}                                     \r\n" +
+                    $"START DEPTH = {Inclinometer.StartDepth}                                \r\n" +
+                    $"END DEPTH = {Inclinometer.EndDepth}                                    \r\n" +
+                    $"INCREMENT = 0.5                                                        \r\n" +
+                    $"INSTR CONST = 50000                                                    \r\n" +
+                    $"ROTATIONAL CORR A = {Settings.RotationalCorrA}                         \r\n" +
+                    $"ROTATIONAL CORR B = {Settings.RotationalCorrB}                         \r\n" +
+                    $"SENSITIVITY FACTOR A = {Settings.SensitivityFactorA}                   \r\n" +
+                    $"SENSITIVITY FACTOR B = {Settings.SensitivityFactorB}                   \r\n" +
+                    $"\r\n \r\n";
 
                 foreach (var data in Datalist)
                 {
@@ -439,18 +454,18 @@ namespace IncliForms.Views
                     data.Aplus.ToString().PadRight(8) +
                     "   B0 " +
                     data.Bplus.ToString().PadRight(8) +
-                    "\n" +
+                    "\r\n" +
                     "      " +
                     " A180 " +
                     data.Aminus.ToString().PadRight(8) +
                     " B180 " +
                     data.Bminus.ToString().PadRight(8) +
-                    "\n";
+                    "\r\n";
 
                     template += blockTemplate;
                 }
 
-                template = template.Replace($"\n", Environment.NewLine);
+                //template = template.Replace($"\n", Environment.NewLine);
 
                 System.IO.File.WriteAllText(rppPath, template);
             });
@@ -485,7 +500,7 @@ namespace IncliForms.Views
             catch
             {
                 App.ToastShort("File not ready yet");
-            }
+            }                                                                                                                 
         }
 
         private void Csv_Tapped(object sender, EventArgs e)

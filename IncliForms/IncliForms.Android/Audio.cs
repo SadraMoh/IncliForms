@@ -36,6 +36,11 @@ namespace IncliForms.Droid
                 };
                 player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
                 player.Prepare();
+                player.Completion += (e,s) =>
+                {
+                    player.Release();
+                    player.Dispose();
+                };
             }
             catch (Java.IO.FileNotFoundException)
             {
@@ -47,6 +52,11 @@ namespace IncliForms.Droid
                 };
                 player.SetDataSource(fd.FileDescriptor, fd.StartOffset, fd.Length);
                 player.Prepare();
+                player.Completion += (e, s) =>
+                {
+                    player.Release();
+                    player.Dispose();
+                };
             }
         }
     }
