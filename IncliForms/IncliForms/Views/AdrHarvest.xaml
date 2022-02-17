@@ -70,7 +70,7 @@
 
                                 <Grid VerticalOptions="Center">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="24"/>
+                                        <ColumnDefinition Width="16"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
@@ -78,7 +78,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="5"/>
+                                        <ColumnDefinition Width="4"/>
                                     </Grid.ColumnDefinitions>
 
                                     <BoxView Grid.Column="0"
@@ -237,6 +237,7 @@
                                      Grid.RowSpan="2"
                                       VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="CenterAndExpand">
+
                             <Frame CornerRadius="50"
                                    Padding="12"
                                    WidthRequest="62"
@@ -253,15 +254,15 @@
                                       VerticalOptions="FillAndExpand"
                                       Source="resource://IncliForms.Resources.plus.svg"/>
                             </Frame>
-                            <Label Text="Log Current Reading" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
+                            <Label Text="Read and Log" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="2"
+                        <StackLayout Grid.Column="2" IsVisible="false"
                                      Grid.Row="0" VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="CenterAndExpand">
                             <Switch x:Name="switchAuto" IsEnabled="True" VerticalOptions="Center"/>
                             <Label Text="Auto" Style="{StaticResource lblAnnotation}" HorizontalOptions="Center"/>
                         </StackLayout>
-                        <StackLayout Grid.Column="2"
+                        <StackLayout Grid.Column="2" IsVisible="false"
                                      Grid.Row="1" VerticalOptions="CenterAndExpand"
                                      HorizontalOptions="CenterAndExpand">
                             <Frame CornerRadius="24"

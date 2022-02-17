@@ -50,8 +50,8 @@ namespace IncliForms.Models.Inclinometer
             //if (Aminus == 0) throw new Exception("Aminus is null");
             //if (Bminus == 0) throw new Exception("Bminus is null");
 
-            DeltaA = Math.Abs(Aplus - Aminus);
-            DeltaB = Math.Abs(Bplus - Bminus);
+            DeltaA = Math.Abs(Aplus + Aminus);
+            DeltaB = Math.Abs(Bplus + Bminus);
         }
 
         public float AvA()

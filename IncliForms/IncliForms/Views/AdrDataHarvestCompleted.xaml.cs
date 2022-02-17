@@ -88,6 +88,30 @@ namespace IncliForms.Views
             //     GenerateCSV(),
             //     GenerateRPP()
             //    );
+
+            foreach (AdrDatablock data in Datalist)
+            {
+                switch (Settings.RecordUnit)
+                {
+                    case RecordUnit.cm:
+                        break;
+                    case RecordUnit.m:
+                        break;
+                    case RecordUnit.mm:
+                        data.Aplus *= 100;
+                        data.Bplus *= 100;
+                        data.Aminus *= 100;
+                        data.Bminus *= 100;
+
+                        data.Aplus = (float)Math.Floor(data.Aplus);
+                        data.Bplus = (float)Math.Floor(data.Bplus);
+                        data.Aminus = (float)Math.Floor(data.Aminus);
+                        data.Bminus = (float)Math.Floor(data.Bminus);
+
+                        break;
+                }
+            }
+
             await GenerateExcel();
             await GenerateCSV();
             await GenerateRPP();
@@ -286,6 +310,7 @@ namespace IncliForms.Views
                      int lineNumber = 20;
                      foreach (AdrDatablock data in Datalist)
                      {
+                       
                          worksheet.Cell($"A{lineNumber}").SetValue($"+{data.Depth}");
                          worksheet.Cell($"B{lineNumber}").SetValue($"A0");
                          worksheet.Cell($"C{lineNumber}").SetValue($"{data.Aplus}");
@@ -383,6 +408,8 @@ namespace IncliForms.Views
                     int lineNumber = 21;
                     foreach (AdrDatablock data in Datalist)
                     {
+
+                      
                         worksheet.Cell($"A{lineNumber}").SetValue($"-{data.Depth}");
                         worksheet.Cell($"B{lineNumber}").SetValue($"{data.Aplus}");
                         worksheet.Cell($"C{lineNumber}").SetValue($"{data.Aminus}");
@@ -423,7 +450,7 @@ namespace IncliForms.Views
 
                 string time = DateTime.Now.TimeOfDay.ToString().Split('.')[0];
 
-                string date = $"{ Record.DateHarvested.Date.Day.ToString("00") } { monthName } { Record.DateHarvested.Date.Year }";
+                string date = $"{ Record.DateHarvested.Date.Day:00} { monthName } { Record.DateHarvested.Date.Year }";
 
                 string template =
                     $"TIME = {time}   {date}                                                 \r\n" +
@@ -448,6 +475,7 @@ namespace IncliForms.Views
 
                 foreach (var data in Datalist)
                 {
+                     
                     string blockTemplate =
                     data.Depth.ToString().PadRight(6) +
                     "   A0 " +
@@ -500,7 +528,7 @@ namespace IncliForms.Views
             catch
             {
                 App.ToastShort("File not ready yet");
-            }                                                                                                                 
+            }
         }
 
         private void Csv_Tapped(object sender, EventArgs e)

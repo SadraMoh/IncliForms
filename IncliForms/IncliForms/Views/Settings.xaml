@@ -45,7 +45,7 @@
                     <ViewCell Tapped="RefreshInterval_Tapped">
                         <StackLayout Padding="12">
                             <Label Style="{StaticResource cellName}">
-                                Refresh Interval
+                                Refresh Interval (miliseconds)
                             </Label>
                             <Label x:Name="lblRefreshInterval" Style="{StaticResource cellValue}">
                                 1200

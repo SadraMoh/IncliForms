@@ -109,9 +109,9 @@ namespace IncliForms.Views
             string res = await DisplayPromptAsync("Enter Refresh Interval in miliseconds", null, placeholder: lblRefreshInterval.Text);
             if (string.IsNullOrEmpty(res)) return;
             if (!int.TryParse(res, out int tres)) return;
-            if (tres < 100)
+            if (tres < 10)
             {
-                App.ToastShort("Interval cannot be less than 100 miliseconds");
+                App.ToastShort("Interval cannot be less than 10 miliseconds");
                 return;
             };
 

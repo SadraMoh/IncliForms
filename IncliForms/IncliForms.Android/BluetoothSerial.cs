@@ -103,8 +103,9 @@ namespace IncliForms.Droid
 
             byte[] buffer = new byte[64];
 
+
             // Read data from the device
-            var res = await Socket.InputStream.ReadAsync(buffer, 0, buffer.Length);
+            int res = await Socket.InputStream.ReadAsync(buffer, 0, buffer.Length);
             var str = Encoding.Default.GetString(buffer);
 
             return str;

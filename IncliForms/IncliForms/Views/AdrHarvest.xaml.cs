@@ -105,10 +105,23 @@ namespace IncliForms.Views
         {
             try
             {
-                string res = (await App.Bluetooth.ReadData());
-                if (res == null) return;
+                string res = await App.Bluetooth.ReadData();
+                if (res == null) throw new Exception("Read string was null");
 
-                //if (res.Any("!@#$%^&*()_+GHIJKLMNOPQRSTUVWXYZ".Contains)) return;
+#if DEBUG
+                res =
+                    res.Split("\r\n".ToCharArray())
+                    .Where(block => block.StartsWith("A") && block.EndsWith("E"))
+                    .LastOrDefault(); // get last valid block
+#else
+                res =
+                    res.Split("\r\n".ToCharArray())
+                    .Where(block => block.StartsWith("A") && block.EndsWith("F"))
+                    .LastOrDefault(); // get last valid block
+#endif
+
+                if (res.Any("!@#$%^&*()_+GHIJKLMNOPQRSTUVWXYZ".Contains))
+                    throw new Exception("One or more illegal characters was present in the string"); ;
 
                 int a = res.IndexOf('A');
                 int b = res.IndexOf('B');
@@ -117,9 +130,11 @@ namespace IncliForms.Views
                 int e = res.IndexOf('E');
                 int f = res.IndexOf('F');
 
-                //if (a == -1 || b == -1 || c == -1 || d == -1 || e == -1 || f == - 1) return;
-                if (a == -1 || b == -1 || c == -1 || d == -1 || e == -1) return;
-                if (f == -1) f = res.Length - 1;
+                // if any of the characters wasn't present
+                if (a == -1 || b == -1 || c == -1 || d == -1 || e == -1)
+                    throw new Exception("One or more characters wasn't present in read string");
+
+                if (f == -1) f = res.Length;
 
                 // A
                 string alpha = res.Substring(a + 1, (b - a) - 1);
@@ -136,12 +151,12 @@ namespace IncliForms.Views
 
                 // *
                 string gamma = res.Substring(c + 1, (d - c) - 1);
-                // Battery on board
+                // Battery (on test board)
                 string delta = res.Substring(d + 1, (e - d) - 1);
-                // Battery
+                // Battery (on main board)
                 string epsilon = res.Substring(e + 1, (f - e) - 1);
                 // *
-                string zeta = res.Substring(f + 1);
+                // string zeta = res.Substring(f + 1);
 
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
@@ -163,18 +178,18 @@ namespace IncliForms.Views
                         case Models.RecordUnit.m:
                             A = A / 100;
                             B = B / 100;
-                            lblA.Text = $"A: {A:#####.#####}";
-                            lblB.Text = $"B: {B:#####.#####}";
+                            lblA.Text = $"A: {A:######.#####}";
+                            lblB.Text = $"B: {B:######.#####}";
                             break;
                         case Models.RecordUnit.cm:
-                            lblA.Text = $"A: {A:#####.###}";
-                            lblB.Text = $"B: {B:#####.###}";
+                            lblA.Text = $"A: {A:######.###}";
+                            lblB.Text = $"B: {B:######.###}";
                             break;
                         case Models.RecordUnit.mm:
-                            A = A * 10;
-                            B = B * 10;
-                            lblA.Text = $"A: {A:#####.##}";
-                            lblB.Text = $"B: {B:#####.##}";
+                            A = A * 10; // OK
+                            B = B * 10; // OK
+                            lblA.Text = $"A: {A:######.##}";
+                            lblB.Text = $"B: {B:######.##}";
                             break;
                     }
 
@@ -212,6 +227,7 @@ namespace IncliForms.Views
                     #endregion
 
                 });
+
             }
             catch (Exception ex)
             {
@@ -241,9 +257,19 @@ namespace IncliForms.Views
             App.Bluetooth.Disconnect();
         }
 
+#if DEBUG
+        readonly uint waitTime = 10;
+#else
+        readonly uint waitTime = 6250;
+#endif
+
+        bool btnLogRecordDisabled = false;
         bool isSecondPhase = false;
-        private void LogRecord_Tapped(object sender, EventArgs e)
+        private async void LogRecord_Tapped(object sender, EventArgs e)
         {
+            if (btnLogRecordDisabled) return;
+            btnLogRecordDisabled = true;
+
             AdrDatablock block = (AdrDatablock)listViewMain.SelectedItem;
             int dataIndex = datalist.IndexOf(block);
 
@@ -252,10 +278,15 @@ namespace IncliForms.Views
 
             btnLog.BackgroundColor = Color.GreenYellow;
 
+            App.PlaySound("Soundtracks/Recorded.mp3");
+
             var a = new Animation((v) => btnLog.BackgroundColor =
             Color.FromHsla(v + 0.10, Color.Orange.Saturation, Color.Orange.Luminosity),
             Color.Orange.Luminosity, Color.Orange.Hue - 0.10f);
-            a.Commit(this, "hello", rate: 16, length: 1200);
+            a.Commit(this, "hello", rate: 16, length: waitTime);
+
+            await Task.Delay((int)waitTime);
+            btnLogRecordDisabled = false;
 
             if (!isSecondPhase)
             {
@@ -292,7 +323,7 @@ namespace IncliForms.Views
             Depth -= 0.5f;
             lblDepth.Text = $"Dp: {Depth - .5f:000.0}";
 
-            App.PlaySound("Soundtracks/Recorded.mp3");
+            App.PlaySound("Soundtracks/Recording.mp3");
 
 
             // Select the next block
