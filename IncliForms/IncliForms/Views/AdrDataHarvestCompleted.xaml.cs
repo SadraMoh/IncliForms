@@ -89,28 +89,28 @@ namespace IncliForms.Views
             //     GenerateRPP()
             //    );
 
-            foreach (AdrDatablock data in Datalist)
-            {
-                switch (Settings.RecordUnit)
-                {
-                    case RecordUnit.cm:
-                        break;
-                    case RecordUnit.m:
-                        break;
-                    case RecordUnit.mm:
-                        data.Aplus *= 100;
-                        data.Bplus *= 100;
-                        data.Aminus *= 100;
-                        data.Bminus *= 100;
+            //foreach (AdrDatablock data in Datalist)
+            //{
+            //    switch (Settings.RecordUnit)
+            //    {
+            //        case RecordUnit.cm:
+            //            break;
+            //        case RecordUnit.m:
+            //            break;
+            //        case RecordUnit.mm:
+            //            data.Aplus *= 100;
+            //            data.Bplus *= 100;
+            //            data.Aminus *= 100;
+            //            data.Bminus *= 100;
 
-                        data.Aplus = (float)Math.Floor(data.Aplus);
-                        data.Bplus = (float)Math.Floor(data.Bplus);
-                        data.Aminus = (float)Math.Floor(data.Aminus);
-                        data.Bminus = (float)Math.Floor(data.Bminus);
+            //            data.Aplus = (float)Math.Floor(data.Aplus);
+            //            data.Bplus = (float)Math.Floor(data.Bplus);
+            //            data.Aminus = (float)Math.Floor(data.Aminus);
+            //            data.Bminus = (float)Math.Floor(data.Bminus);
 
-                        break;
-                }
-            }
+            //            break;
+            //    }
+            //}
 
             await GenerateExcel();
             await GenerateCSV();
@@ -310,7 +310,7 @@ namespace IncliForms.Views
                      int lineNumber = 20;
                      foreach (AdrDatablock data in Datalist)
                      {
-                       
+
                          worksheet.Cell($"A{lineNumber}").SetValue($"+{data.Depth}");
                          worksheet.Cell($"B{lineNumber}").SetValue($"A0");
                          worksheet.Cell($"C{lineNumber}").SetValue($"{data.Aplus}");
@@ -409,7 +409,7 @@ namespace IncliForms.Views
                     foreach (AdrDatablock data in Datalist)
                     {
 
-                      
+
                         worksheet.Cell($"A{lineNumber}").SetValue($"-{data.Depth}");
                         worksheet.Cell($"B{lineNumber}").SetValue($"{data.Aplus}");
                         worksheet.Cell($"C{lineNumber}").SetValue($"{data.Aminus}");
@@ -473,25 +473,52 @@ namespace IncliForms.Views
                     $"SENSITIVITY FACTOR B = {Settings.SensitivityFactorB}                   \r\n" +
                     $"\r\n \r\n";
 
-                foreach (var data in Datalist)
-                {
-                     
-                    string blockTemplate =
-                    data.Depth.ToString().PadRight(6) +
-                    "   A0 " +
-                    data.Aplus.ToString().PadRight(8) +
-                    "   B0 " +
-                    data.Bplus.ToString().PadRight(8) +
-                    "\r\n" +
-                    "      " +
-                    " A180 " +
-                    data.Aminus.ToString().PadRight(8) +
-                    " B180 " +
-                    data.Bminus.ToString().PadRight(8) +
-                    "\r\n";
+                if (Settings.RecordUnit == RecordUnit.mm)
+                    foreach (var data in Datalist)
+                    {
+                        // get rid of decimals on mm by casting to int
+                        int aPlusNodec = (int)data.Aplus;
+                        int bPlusNodec = (int)data.Bplus;
+                        int aMinusNodec = (int)data.Aminus;
+                        int bMinusNodec = (int)data.Bminus;
 
-                    template += blockTemplate;
-                }
+                        string blockTemplate =
+                        data.Depth.ToString().PadRight(6) +
+                        "   A0 " +
+                        aPlusNodec.ToString().PadRight(8) +
+                        "   B0 " +
+                        bPlusNodec.ToString().PadRight(8) +
+                        "\r\n" +
+                        "      " +
+                        " A180 " +
+                        aMinusNodec.ToString().PadRight(8) +
+                        " B180 " +
+                        bMinusNodec.ToString().PadRight(8) +
+                        "\r\n";
+
+                        template += blockTemplate;
+                    }
+                else
+                    foreach (var data in Datalist)
+                    {
+
+                        string blockTemplate =
+                        data.Depth.ToString().PadRight(6) +
+                        "   A0 " +
+                        data.Aplus.ToString().PadRight(8) +
+                        "   B0 " +
+                        data.Bplus.ToString().PadRight(8) +
+                        "\r\n" +
+                        "      " +
+                        " A180 " +
+                        data.Aminus.ToString().PadRight(8) +
+                        " B180 " +
+                        data.Bminus.ToString().PadRight(8) +
+                        "\r\n";
+
+                        template += blockTemplate;
+                    }
+
 
                 //template = template.Replace($"\n", Environment.NewLine);
 
